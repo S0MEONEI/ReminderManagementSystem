@@ -1,14 +1,13 @@
 import java.util.Scanner;
 
 public class ReminderManagementSystem {
-
-	static Scanner input = new Scanner(System.in);
-	static double[] deadline = new double [10];
-	static String[] wyd = new String [10];
-	static int step = 0;
 	
 	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
 		int num = 0;
+		
+		PlanManager pm = new PlanManager();
+		pm.arrayInit();
 		
 		while (num != 6) {
 			System.out.println("---Reminder Management System Menu---");
@@ -20,57 +19,23 @@ public class ReminderManagementSystem {
 			System.out.println("6. Exit");
 			System.out.println("1부터 6 중 번호를 선택하세요.");
 		
-		num = input.nextInt();
-		
-		if (num == 1) {
-			addReminder();
-		}
-		else if (num == 2) {
-			deleteReminder();
-		}
-		else if (num == 3) {
-			editReminder();
-		}
-		else if (num == 4) {
-			viewReminder();
-		}
-		else {
-			continue;
+			num = input.nextInt();
+			
+			if (num == 1) {
+				pm.addReminder();
+			}
+			else if (num == 2) {
+				pm.deleteReminder();
+			}
+			else if (num == 3) {
+				pm.editReminder();
+			}
+			else if (num == 4) {
+				pm.viewReminder();
+			}
+			else {
+				continue;
+			}
 		}
 	}
-}
-	public static void addReminder() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Enter a step to want: ");
-		step = input.nextInt();
-		System.out.print("Deadline(mm.dd):");
-		deadline[step] = input.nextDouble();
-		input.nextLine();
-		System.out.print("What you do?:");
-		wyd[step] = input.next();
-	}
-	
-	public static void deleteReminder() {
-		System.out.println("Enter a step to delete");
-		step = input.nextInt();
-		deadline[step] = 0;
-		wyd[step] = null;
-	}
-	
-	public static void editReminder() {
-		System.out.println("Enter a step to want: ");
-		step = input.nextInt();
-		System.out.print("Deadline(mm.dd):");
-		deadline[step] = input.nextDouble();
-		input.nextLine();
-		System.out.print("What you do?:");
-		wyd[step] = input.next();	}
-	
-	public static void viewReminder() {
-		for(step=0; step<10; step++) {
-			System.out.println("Deadline: " + deadline[step]);
-			System.out.println("What you do?: " + wyd[step]);
-			System.out.println();
-		}
-	} 
 }
