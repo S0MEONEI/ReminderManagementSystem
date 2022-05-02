@@ -2,7 +2,6 @@ public class Plan {
 	
 	private String deadline;
 	private String wyd;
-	private String name;
 	
 	Plan() {
 		
@@ -24,12 +23,10 @@ public class Plan {
 		this.wyd = wyd;
 	}
 	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void printInfo()
+	{
+		System.out.println("Deadline: " + getDeadline());
+		System.out.println("Plan: " + getWyd());
 	}
 	
 }
