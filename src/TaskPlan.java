@@ -4,7 +4,7 @@ public class TaskPlan extends Plan {
 	private String subject;
 	
 	TaskPlan() {
-		
+
 	}
 
 	public String getSubject() {
@@ -15,5 +15,12 @@ public class TaskPlan extends Plan {
 		this.subject = subject;
 	}
 	
-	
+	public void printInfo()
+	{
+		System.out.println("Deadline: " + getDeadline());
+		System.out.println("Subject: " + getSubject());
+		System.out.println("Plan: " + getWyd());
+	}
 }
+
+
