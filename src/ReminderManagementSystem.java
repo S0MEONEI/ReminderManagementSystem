@@ -2,9 +2,22 @@ import java.util.Scanner;
 
 public class ReminderManagementSystem {
 	
+	static String Topic = "Reminder, ToDo List";
+	
+	
+	public static void ManagementTopic (String a) {
+	       System.out.println(a);
+	   }
+	public static void ManagementTopic (String b, String c) {
+	       System.out.println("The date of creation: "+b+"."+c);
+	   }
+	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		int num = 0;
+		
+		ManagementTopic(Topic);
+		ManagementTopic("03", "14");
 		
 		PlanManager pm = new PlanManager();
 		pm.arrayInit();
