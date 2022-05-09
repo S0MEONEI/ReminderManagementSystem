@@ -26,8 +26,8 @@ public class PlanManager {
 	
 	public void deleteReminder() {
 		System.out.println("Enter an index to delete");
-		input.nextLine();
 		int i = input.nextInt();
+		input.nextLine();
 		tp[i].setSubject(null);
 		tp[i].setDeadline(null);
 		tp[i].setWyd(null);
