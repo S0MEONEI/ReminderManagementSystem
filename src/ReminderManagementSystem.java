@@ -12,7 +12,7 @@ public class ReminderManagementSystem {
 	       System.out.println("The date of creation: "+b+"."+c);
 	   }
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) { 	
 		Scanner input = new Scanner(System.in);
 		int num = 0;
 		
