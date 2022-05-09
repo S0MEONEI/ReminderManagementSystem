@@ -1,11 +1,7 @@
 
-public class TaskPlan extends Plan {
+public class TaskPlan extends Plan implements subject {
 	
 	private String subject;
-	
-	TaskPlan() {
-
-	}
 
 	public String getSubject() {
 		return subject;
@@ -24,3 +20,4 @@ public class TaskPlan extends Plan {
 }
 
 
+ 	
