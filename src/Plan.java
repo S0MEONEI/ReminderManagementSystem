@@ -1,4 +1,4 @@
-public class Plan {
+public abstract class Plan {
 	
 	private String deadline;
 	private String wyd;
@@ -23,10 +23,6 @@ public class Plan {
 		this.wyd = wyd;
 	}
 	
-	public void printInfo()
-	{
-		System.out.println("Deadline: " + getDeadline());
-		System.out.println("Plan: " + getWyd());
-	}
+	abstract void printInfo();
 	
 }
