@@ -12,7 +12,6 @@ public class PlanManager {
 		}
 	}
 	public void addReminder() {
-		try {
 			System.out.print("What is plan name?: ");
 			tp[idx].setSubject(input.nextLine());
 			input.nextLine();
@@ -27,12 +26,8 @@ public class PlanManager {
 			System.out.println();
 			
 			this.idx++;
-		}
-		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("ArrayIndexOutOfBoundsException");
-			System.out.println("10이하의 정수로 다시 입력하세요");
-		}
 	}
+		
 	
 	public void deleteReminder() {
 		try {
