@@ -25,4 +25,4 @@ public abstract class Plan {
 	
 	abstract void printInfo();
 	
-}
+}//
