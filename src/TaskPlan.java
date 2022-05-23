@@ -1,5 +1,10 @@
+import java.io.Serializable;
 
-public class TaskPlan extends Plan implements subject {
+public class TaskPlan extends Plan implements subject, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3308952290564782775L;
 	
 	private String subject;
 
@@ -13,11 +18,11 @@ public class TaskPlan extends Plan implements subject {
 	}
 	
 	public void printInfo()
-	{
-				System.out.println("Deadline: " + getDeadline());
-				System.out.println("Subject: " + getSubject());
-				System.out.println("Plan: " + getWyd());
-				System.out.println();
+	{	
+		System.out.println("Subject: " + getSubject());
+		System.out.println("Deadline: " + getDeadline());
+		System.out.println("Plan: " + getWyd());
+		System.out.println();
 			
 		
 	}

@@ -1,7 +1,16 @@
+import java.io.FileInputStream; 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import log.EventLogger;
 
 public class ReminderManagementSystem {
+	
+	static EventLogger logger = new EventLogger("log.txt");
 	
 	static String Topic = "Reminder, ToDo List";
 	
@@ -13,16 +22,23 @@ public class ReminderManagementSystem {
 	       System.out.println("The date of creation: "+b+"."+c);
 	   }
 	
-	public static void main(String[] args) { 	
+	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		int num = 0;
+
 		
 		ManagementTopic(Topic);
 		ManagementTopic("03", "14");
 		
-		ReminderManagementSystem rm = new ReminderManagementSystem();
-		PlanManager pm = new PlanManager();
-		pm.arrayInit();
+		PlanManager PlanManager = getObject("PlanManager.ser");
+		if(PlanManager == null) {
+			PlanManager = new PlanManager(input);
+		}else {
+			PlanManager.input = input;
+		}
+
+		
+		int num = 0;
+		
 		try {
 			while (num != 6) {
 				System.out.println("---Reminder Management System Menu---");
@@ -35,18 +51,23 @@ public class ReminderManagementSystem {
 				System.out.println("1부터 6 중 번호를 선택하세요.");
 		
 				num = input.nextInt();
+				input.nextLine();
 			
 				if (num == 1) {
-					pm.addReminder();
+					PlanManager.addReminder();
+					logger.log("Add reminder");
 				}
 				else if (num == 2) {
-					pm.deleteReminder();
+					PlanManager.deleteReminder();
+					logger.log("Delete reminder");
 				}
 				else if (num == 3) {
-					pm.editReminder();
+					PlanManager.editReminder();
+					logger.log("Edit reminder");
 				}
 				else if (num == 4) {
-					pm.viewReminder();
+					PlanManager.viewReminder();
+					logger.log("View reminder");
 				}
 				else {
 					continue;
@@ -57,9 +78,64 @@ public class ReminderManagementSystem {
 		catch(InputMismatchException e){
 			System.out.println("InputMismatchException");
 		}
-		catch(NullPointerException e){
-			System.out.println("NullPointerException");
-
-		}
+		
+		putObject( PlanManager, "PlanManager.ser");
+		
 	}
+	
+	
+	
+	
+	public static PlanManager getObject(String filename) {
+		PlanManager PlanManager = null;
+		try {
+			FileInputStream file = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(file);
+			
+			PlanManager = (PlanManager) in.readObject();
+			
+			in.close();
+			file.close();
+			
+		} catch (FileNotFoundException e) {
+			return PlanManager;
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+
+		return PlanManager;
+		
+	}
+	
+	public static void putObject(PlanManager planManager, String filename) {
+		try {
+			FileOutputStream file = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			out.writeObject(planManager);
+			
+			out.close();
+			file.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+	}
+	
+
+	
 }//

@@ -1,4 +1,10 @@
-public abstract class Plan {
+import java.io.Serializable;
+
+public abstract class Plan implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6840686466120215970L;
 	
 	private String deadline;
 	private String wyd;

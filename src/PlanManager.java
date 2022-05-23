@@ -1,42 +1,55 @@
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Scanner;
-public class PlanManager {
-	Scanner input = new Scanner(System.in);
-	TaskPlan[] tp = new TaskPlan[10];
-	int idx;
+
+public class PlanManager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7697204917960877385L;
 	
-	public void arrayInit()
-	{
-		for(int i = 0; i < 10; i++) {
-			this.tp[i] = new TaskPlan();
-			this.tp[i].setDeadline("0");
-		}
-	}
-	public void addReminder() {
-			System.out.print("What is plan name?: ");
-			tp[idx].setSubject(input.nextLine());
-			input.nextLine();
-			System.out.println();
-			
-			System.out.print("Deadline(mm.dd): ");
-			tp[idx].setDeadline(input.nextLine());
-			System.out.println();
-			
-			System.out.print("What will you do?: ");
-			tp[idx].setWyd(input.nextLine());
-			System.out.println();
-			
-			this.idx++;
-	}
+	transient Scanner input;
+	ArrayList<TaskPlan> TaskPlan = new ArrayList<>();
+	
+	int idx = 0;
+
+
+	PlanManager() {
 		
+	}
 	
+	PlanManager(Scanner input){
+		this.input=input;
+	}
+	
+	
+	public void addReminder() {
+		TaskPlan tp = new TaskPlan();
+		
+		System.out.print("What is plan name?: ");
+		tp.setSubject(input.nextLine());
+		input.nextLine();
+		System.out.println();
+		
+		System.out.print("Deadline(mm.dd): ");
+		tp.setDeadline(input.nextLine());
+		input.nextLine();
+		System.out.println();
+			
+		System.out.print("What will you do?: ");
+		tp.setWyd(input.nextLine());
+		input.nextLine();
+		System.out.println();
+			
+		this.TaskPlan.add(tp);
+	}
+
 	public void deleteReminder() {
 		try {
 			System.out.println("Enter an index to delete");
 			int i = input.nextInt();
 			input.nextLine();
-			tp[i].setSubject(null);
-			tp[i].setDeadline(null);
-			tp[i].setWyd(null);
+			TaskPlan.remove(i);
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("ArrayIndexOutOfBoundsException");
@@ -48,21 +61,29 @@ public class PlanManager {
 		try {
 			System.out.println("Enter an index to edit: ");
 			int i = input.nextInt();
+			TaskPlan.remove(i);
 			
-			tp[i].printInfo();
-			System.out.println();
-						
-			System.out.print("What is plan name?:");
-			tp[idx].setSubject(input.nextLine());
-			System.out.println();
+			TaskPlan tp = new TaskPlan();
 			
-			System.out.print("edit Deadline(mm.dd):");
-			tp[i].setDeadline(input.nextLine());
+			input.nextLine();
+			System.out.print("What is plan name?: ");
+			tp.setSubject(input.nextLine());
+			input.nextLine();
 			System.out.println();
 			
-			System.out.print("What will you do?:");
-			tp[i].setWyd(input.nextLine());
+			System.out.print("Deadline(mm.dd): ");
+			tp.setDeadline(input.nextLine());
+			input.nextLine();
 			System.out.println();
+				
+
+			System.out.print("What will you do?: ");
+			tp.setWyd(input.nextLine());
+			input.nextLine();
+			System.out.println();
+			
+			this.TaskPlan.add(i, tp);
+
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("ArrayIndexOutOfBoundsException");
@@ -71,11 +92,10 @@ public class PlanManager {
 	}
 	
 	public void viewReminder() {
-		for(int i = 0; i < 10; i++) {
-				System.out.println("INDEX: " + i);
-				tp[i].printInfo();	
-			
-			
-		}
+		for(int i =0;i < TaskPlan.size(); i++)   {
+			TaskPlan.get(i).printInfo();
+	     }
+		
+
 	}
 }//
