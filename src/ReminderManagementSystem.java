@@ -38,7 +38,7 @@ public class ReminderManagementSystem {
 
 		
 		int num = 0;
-		
+			
 		try {
 			while (num != 6) {
 				System.out.println("---Reminder Management System Menu---");
