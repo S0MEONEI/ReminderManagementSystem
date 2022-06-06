@@ -1,3 +1,5 @@
+package manager;
+
 import java.io.Serializable;
 
 public class TaskPlan extends Plan implements subject, Serializable {
@@ -25,6 +27,12 @@ public class TaskPlan extends Plan implements subject, Serializable {
 		System.out.println();
 			
 		
+	}
+
+	@Override
+	public Object getsubject() {
+		// TODO Auto-generated method stub
+		return getSubject();
 	}
 }//
 

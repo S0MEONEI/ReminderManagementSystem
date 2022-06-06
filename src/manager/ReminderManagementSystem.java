@@ -1,3 +1,5 @@
+package manager;
+
 import java.io.FileInputStream; 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -6,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import gui.WindowFrame;
 import log.EventLogger;
 
 public class ReminderManagementSystem {
@@ -29,13 +33,17 @@ public class ReminderManagementSystem {
 		ManagementTopic(Topic);
 		ManagementTopic("03", "14");
 		
+		
+		
+		
 		PlanManager PlanManager = getObject("PlanManager.ser");
 		if(PlanManager == null) {
 			PlanManager = new PlanManager(input);
 		}else {
 			PlanManager.input = input;
 		}
-
+		
+		WindowFrame frame = new WindowFrame(PlanManager);
 		
 		int num = 0;
 			
@@ -82,9 +90,6 @@ public class ReminderManagementSystem {
 		putObject( PlanManager, "PlanManager.ser");
 		
 	}
-	
-	
-	
 	
 	public static PlanManager getObject(String filename) {
 		PlanManager PlanManager = null;

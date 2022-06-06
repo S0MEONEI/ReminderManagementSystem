@@ -1,3 +1,5 @@
+package manager;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -97,5 +99,13 @@ public class PlanManager implements Serializable {
 	     }
 		
 
+	}
+	
+	public int size() {
+		return TaskPlan.size(); 
+	}
+	
+	public Plan get(int index) {
+		return TaskPlan.get(index);
 	}
 }//

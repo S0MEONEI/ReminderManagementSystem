@@ -1,3 +1,5 @@
+package manager;
+
 import java.io.Serializable;
 
 public abstract class Plan implements Serializable{
@@ -30,5 +32,7 @@ public abstract class Plan implements Serializable{
 	}
 	
 	abstract void printInfo();
+
+	public abstract Object getsubject();
 	
 }//
