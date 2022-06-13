@@ -11,40 +11,52 @@ import javax.swing.table.DefaultTableModel;
 import manager.Plan;
 import manager.PlanManager;
 
-public class ReminderViewer extends JPanel	{
+public class ReminderViewer extends JPanel   {
 
-	WindowFrame frame;
-	
-	PlanManager PlanManager;
+   WindowFrame frame;
+   
+   PlanManager PlanManager;
 
 
-	public ReminderViewer(WindowFrame frame, PlanManager PlanManager) {
-		this.frame = frame;
-		this.PlanManager = PlanManager;
-		
-		System.out.println("***" + PlanManager.size() + "***");
-		
-		DefaultTableModel model = new DefaultTableModel();
-		
-		model.addColumn("Subject");
-		model.addColumn("Deadline");
-		model.addColumn("Plan");		
-		
-		for(int i=0; i< PlanManager.size(); i++) {
-			Vector<Object> row = new Vector();
-			Plan tp = PlanManager.get(i); 
-			row.add(tp.getsubject());
-			row.add(tp.getDeadline());
-			row.add(tp.getWyd());
-			model.addRow(row);
-			
-		}
-		
-		JTable table = new JTable(model);
-		JScrollPane sp = new JScrollPane(table); 
-		
-		
-		this.add(sp);
+   public PlanManager getPlanManager() {
+      return PlanManager;
+   }
 
-	}
+
+   public void setPlanManager(PlanManager planManager) {
+      PlanManager = planManager;
+   }
+
+
+   public void setReminderViewer(PlanManager PlanManager) {
+      this.frame = frame;
+      this.PlanManager = PlanManager;
+      this.removeAll();
+      
+      DefaultTableModel model = new DefaultTableModel();
+      
+         model.addColumn("Subject");
+         model.addColumn("Deadline");
+         model.addColumn("Plan");      
+         
+         for(int i=0; i< PlanManager.size(); i++) {
+            Vector<Object> row = new Vector();
+            Plan tp = PlanManager.get(i); 
+            row.add(tp.getsubject());
+            row.add(tp.getDeadline());
+            row.add(tp.getWyd());
+            model.addRow(row);
+            
+         }
+         
+         JTable table = new JTable(model);
+         JScrollPane sp = new JScrollPane(table); 
+         
+         
+         this.add(sp);
+      
+      
+      System.out.println("***" + PlanManager.size() + "***");
+
+   }
 }
